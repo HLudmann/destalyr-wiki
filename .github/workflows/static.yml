@@ -35,17 +35,17 @@ jobs:
         uses: actions/configure-pages@v5
       - uses: actions/setup-node@v6
         with:
-          node-version: 24
-      - run: npm install
-      - run: ls -Alh
-      - run: npm audit fix || echo "done with some errors"
-      - run: npm run build
-      - run: ls -Alh
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './dist/destalyr-wiki/'
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
