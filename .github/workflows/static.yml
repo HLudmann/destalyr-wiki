@@ -37,8 +37,10 @@ jobs:
         with:
           node-version: 24
       - run: npm install
+      - run: ls -Alh
       - run: npm audit fix || echo "done with some errors"
       - run: npm run build
+      - run: ls -Alh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
